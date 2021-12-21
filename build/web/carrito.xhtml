@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>productos</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    </head>
+    <body class="is-preload">
+        <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Header -->
+            <header id="header">
+                <div class="inner">
+
+                    <!-- Logo -->
+                    <a href="index.html" class="logo">
+                        <span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Productos</span>
+                    </a>
+
+                    <!-- Nav -->
+                    <nav>
+                        <ul>
+                            <li><a href="#menu">Menu</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </header>
+
+            <!-- Menu -->
+            <nav id="menu">
+                <h2>Menu</h2>
+                <ul>
+                    <li><a href="productos.xhtml">Inicio</a></li>
+                    <li><a href="carrito.xhtml">Carrito</a></li>
+                    <li><a href="reglas.xhtml">Descuentos</a></li>
+                    <li><a href="index.xhtml">Logout</a></li>
+
+                </ul>
+            </nav>
+
+            <!-- Main -->
+            <div id="main">
+                <div class="inner">
+                    <div class="card">
+                        <h:form id="form">
+                            <p:dataTable id="products" var="product" value="#{GestionProductoController.productosCarrito}" rowKey="#{product.id}" >
+                                <f:facet name="header">
+                                    Carrito de Compras
+                                </f:facet>
+                                <p:column headerText="ID">
+                                    <h:outputText value="#{product.id}" />
+                                </p:column>
+                                <p:column headerText="DESCRIPCION">
+                                    <h:outputText value="#{product.producto.nombre}" />
+                                </p:column>
+                                <p:column headerText="PRECIO">
+                                    <h:outputText value="#{product.producto.precio}" />
+                                </p:column>
+                                <p:column headerText="CANTIDAD">
+                                    <h:outputText value="#{product.cantidad}" />
+                                </p:column>
+                                <p:column headerText="TOTAL">
+                                    <h:outputText value="#{product.total}" />
+                                </p:column>
+                            </p:dataTable>   
+                            <h:commandButton action="#{GestionProductoController.GenerarCompra()}" value="Generar Compra" class=""> 
+                            </h:commandButton>
+                        </h:form>  
+                        <div class="card" style="width: 200px">
+                            <h:form>
+                                <div class="ui-fluid p-formgrid p-grid">
+                                    <div class="p-field p-col-12 p-md-4">
+                                        <p:outputLabel for="input1" value="SUB TOTAL"/>
+                                        <p:inputText id="input1" value="#{GestionProductoController.resultados[0]}" />
+                                    </div>
+                                    <div class="p-field p-col-12 p-md-4">
+                                        <p:outputLabel for="input2" value="IVA"/>
+                                        <p:inputText id="input2" value="#{GestionProductoController.resultados[1]}"/>
+                                    </div>
+                                    <div class="p-field p-col-12 p-md-4">
+                                        <p:outputLabel for="input3" value="TOTAL"/>
+                                        <p:inputText id="input3" value="#{GestionProductoController.resultados[2]}"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <footer id="footer">
+                <div class="inner">
+                    <section>
+                        <h2>Contáctenos</h2>
+                        <form method="post" action="#">
+                            <div class="fields">
+                                <div class="field half">
+                                    <input type="text" name="name" id="name" placeholder="Name" />
+                                </div>
+                                <div class="field half">
+                                    <input type="email" name="email" id="email" placeholder="Email" />
+                                </div>
+                                <div class="field">
+                                    <textarea name="message" id="message" placeholder="Message"></textarea>
+                                </div>
+                            </div>
+                            <ul class="actions">
+                                <li><input type="submit" value="Send" class="primary" /></li>
+                            </ul>
+                        </form>
+                    </section>
+                    <section>
+                        <h2>Síguenos</h2>
+                        <ul class="icons">
+                            <li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+                            <li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+                            <li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+                            <li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+                            <li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+                            <li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+                            <li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+                        </ul>
+                    </section>
+                    <ul class="copyright">
+                        <li>&copy; Universidad Latina, escuela de Informática</li>
+                    </ul>
+                </div>
+            </footer>
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+
+    </body>
+</html>
